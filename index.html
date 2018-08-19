@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script>
+        function moveTologin(username, password) {
+
+            debugger;
+
+            localStorage.setItem('username', username);
+            localStorage.setItem('password', password);
+            location.href = "login.html";
+        }
+ 
+
+        function searchUsers() {
+
+            var amount = document.getElementById("userSB").value;
+            //  console.log(amount); 
+            //parseInt("500")
+
+            //https://randomuser.me/api/?results=5000
+            console.log("1");
+            $.get("https://randomuser.me/api/?results=" + amount, function (data) {
+                console.log("2");
+                // debugger;
+                var usersContainer = document.getElementsByClassName("users")[0];
+                usersContainer.innerHTML = "";
+                //    console.log(usersContainer.innerHTML);
+                //   console.log(usersContainer.innerText);
+                for (let i = 0; i < data.results.length; i++) {
+                     
+                    var singleUser =`
+                         <div class="col-sm-3 person" onclick="moveTologin('${data.results[i].login.username}' , '${data.results[i].login.password}')"     >
+                           <img src="${data.results[i].picture.large}" />
+                              <h1>${data.results[i].name.first}</h1>
+                              <h2>${data.results[i].name.last}</h2>
+                             <h3>${data.results[i].email}</h3> 
+                         </div> 
+                      `;
+                      usersContainer.innerHTML+=singleUser; 
+                     
+
+                    /*
+                                          var singleUserDiv= document.createElement("div");
+                                          singleUserDiv.setAttribute("class", "col-sm-3 person");
+                                          debugger;
+                                          var x= document.createElement("img").setAttribute("src",data.results[i].picture.large);
+                                          var h1= document.createElement("h1").innerText=data.results[i].name.first;
+                                          var h2= document.createElement("h2").innerText=data.results[i].name.last;
+                                          var h3= document.createElement("h3").innerText=data.results[i].email; 
+                                          singleUserDiv.appendChild(x); 
+                                          singleUserDiv.appendChild(h1);
+                                          singleUserDiv.appendChild(h2);
+                                          singleUserDiv.appendChild(h3);
+
+                                          singleUserDiv.addEventListener("click", moveTologin);
+                                          usersContainer.appendChild(singleUserDiv); 
+                    */
+
+
+
+                }
+            });
+            console.log("3");
+
+
+        }
+    </script>
+
+    <style>
+        .col-sm-3 img {
+            width: 80%;
+        }
+
+        .person {
+            border: 1px solid #515151;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <input id="userSB" />
+            <button onclick="searchUsers()">search user</button>
+
+        </div>
+
+
+        <div class="row users">
+
+            <div class="col-sm-3 person">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/715vwvP5ZEL.png" />
+                <h1>Roni</h1>
+                <h2>Cohen</h2>
+                <h3>email</h3>
+
+            </div>
+
+            <div class="col-sm-3 person">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/715vwvP5ZEL.png" />
+                <h1>Roni</h1>
+                <h2>Cohen</h2>
+                <h3>email</h3>
+
+            </div>
+
+            <div class="col-sm-3 person">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/715vwvP5ZEL.png" />
+                <h1>Roni</h1>
+                <h2>Cohen</h2>
+                <h3>email</h3>
+
+            </div>
+
+            <div class="col-sm-3 person">
+                <img src="https://images-na.ssl-images-amazon.com/images/I/715vwvP5ZEL.png" />
+                <h1>Roni</h1>
+                <h2>Cohen</h2>
+                <h3>email</h3>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

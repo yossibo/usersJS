@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+    
+    <input  name="username" />
+    <input  name="password"  />
+    <button class="btn btn-primary"  onclick="checkPass()"  >LOGIN</button>
+
+
+    
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Error</h4>
+            </div>
+            <div class="modal-body">
+              <p>Wrong username or password</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+    
+
+    <script>
+    debugger;
+    var username=  localStorage.getItem('username') ;
+    var password=  localStorage.getItem('password') ;
+
+
+function checkPass()
+{
+    var usernameTXT= document.getElementsByName("username")[0].value;
+    var passwordTXT= document.getElementsByName("password")[0].value;
+    if(usernameTXT ==username &&  passwordTXT==password )
+    {
+        location.href="http://google.com";
+    }
+    else{
+        $("#myModal").modal();
+    }
+}
+    
+    
+    
+    </script>
+</body>
+</html>
